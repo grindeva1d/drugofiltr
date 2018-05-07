@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <script>
+
+        function IsNumber(str) {
+            return !isNaN(parseFloat(str)) && isFinite(str);
+        }
+
+        new Promise((resolve, reject) => {
+            let body = document.body;
+
+            let inputX = document.createElement("input");
+            inputX.addEventListener("keyup", (sender, e) => waitValue());
+            let inputY = document.createElement("input");
+            inputY.addEventListener("keyup", (sender, e) => waitValue());
+
+            body.appendChild(inputX);
+            body.appendChild(inputY);
+
+            function waitValue() {
+                let x = inputX.value;
+                let y = inputY.value;
+
+                console.log(x);
+                console.log(y);
+
+                if (IsNumber(x) && IsNumber(y)) {
+                    inputX.removeEventListener("keyup");
+                    inputY.removeEventListener("keyup");
+                    
+                    resolve({ x, y });
+                }
+            };
+        });
+
+    </script>
 </body>
+
 </html>
