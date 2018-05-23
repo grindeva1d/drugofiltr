@@ -19,6 +19,11 @@ module.exports = {
         filename: '[name].[hash].js',
         path: path.resolve('dist')
     },
+    resolve: {
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js'
+         }
+    },
     devtool: 'source-map',
     module: { rules },
     plugins: [
@@ -31,7 +36,7 @@ module.exports = {
         }),
         new ExtractTextPlugin('styles.css'),
         new HtmlPlugin({
-            title: 'Loft School sample project',
+            title: 'Другофильтр',
             template: 'index.hbs'
         }),
         new CleanWebpackPlugin(['dist'])

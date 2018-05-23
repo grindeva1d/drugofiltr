@@ -1,0 +1,81 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#container {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.header {
+    background-color: #F4846D;
+    color: #fff;
+    height: 50px;
+    padding: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: bold;
+    font-size: 2em;
+    line-height: 50px;
+}
+
+.content {
+    background-color: #F1F1F1;
+    display: flex;
+}
+
+.content > div {
+    flex: 50%;
+}
+
+.search-input {
+    padding: 5px 10px;
+}
+
+.search-input input {
+    border: 1px solid rgb(219, 209, 209);
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+    background: url(../images/magnifier.png) no-repeat scroll 7px 3px;
+    padding-left:30px;
+    line-height: 21px;
+    box-sizing: border-box;
+}
+
+.friends-container {
+    background-color: #fff;
+    padding: 14px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.friends-container h2 {
+    font-size: 1.6em;
+    font-weight: 400;
+    margin: 0px;
+}
+
+.friend img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.friend div {
+    font-size: 0.8em;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.friend button {
+    margin-top: 39px;
+    float: right;
+}
