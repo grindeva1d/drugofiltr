@@ -46,17 +46,22 @@ body {
     box-sizing: border-box;
 }
 
-.friends-container {
+.drag-zone {
     background-color: #fff;
     padding: 14px;
-    max-height: 600px;
+    height: 600px;
     overflow: auto;
 }
 
-.friends-container h2 {
+.content div h2 {
     font-size: 1.6em;
     font-weight: 400;
     margin: 0px;
+}
+
+.friend {
+    cursor: move;
+    user-select: none;
 }
 
 .friend img {
