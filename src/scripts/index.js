@@ -1,15 +1,6 @@
 import Handlebars from 'handlebars';
-import './styles/style.css';
-
-const friendTemplate = `{{#each items}}
-                        <div class="friend" draggable="true">
-                            <img src="{{photo_100}}" />
-                            <div>{{first_name}} {{last_name}}</div>
-                            <button class="add-button">+</button>
-                        </div>
-                        {{/each}}`;
-
-const friendRender = Handlebars.compile(friendTemplate);
+import '../styles/style.css';
+import friendTemplate from '../templates/friend.hbs';
 
 const content = document.querySelector('.content');
 const allFriends = document.querySelector('#all-friends');
@@ -54,7 +45,7 @@ function isMatching(full, chunk) {
 };
 
 function renderFriends(friends, target) {
-    const html = friendRender(friends);
+    const html = friendTemplate(friends);
     target.innerHTML = html;
 
     target.querySelectorAll('.add-button').forEach((btn) => {

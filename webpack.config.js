@@ -14,7 +14,7 @@ rules.push({
 });
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/scripts/index.js',
     output: {
         filename: '[name].[hash].js',
         path: path.resolve('dist')
@@ -37,7 +37,7 @@ module.exports = {
         new ExtractTextPlugin('styles.css'),
         new HtmlPlugin({
             title: 'Другофильтр',
-            template: 'index.hbs'
+            template: './src/index.hbs'
         }),
         new CleanWebpackPlugin(['dist'])
     ]
