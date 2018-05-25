@@ -1,15 +1,13 @@
 import Handlebars from 'handlebars';
 import './styles/style.css';
 
-const friendTemplate = `<div class="friends">
-                            {{#each items}}
-                            <div class="friend" draggable="true">
-                                <img src="{{photo_100}}" />
-                                <div>{{first_name}} {{last_name}}</div>
-                                <button>+</button>
-                            </div>
-                            {{/each}}
-                        </div>`;
+const friendTemplate = `{{#each items}}
+                        <div class="friend" draggable="true">
+                            <img src="{{photo_100}}" />
+                            <div>{{first_name}} {{last_name}}</div>
+                            <button class="add-button">+</button>
+                        </div>
+                        {{/each}}`;
 
 const friendRender = Handlebars.compile(friendTemplate);
 
@@ -58,6 +56,23 @@ function isMatching(full, chunk) {
 function renderFriends(friends, target) {
     const html = friendRender(friends);
     target.innerHTML = html;
+
+    target.querySelectorAll('.add-button').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            const zone = e.target.closest('.drag-zone');
+            const node = e.target.closest('.friend');
+
+            if (zone && node) {
+                if (zone.id == 'all-friends') {
+                    selectedFriends.insertBefore(node, selectedFriends.lastElementChild);
+                    btn.textContent = '-';
+                } else {
+                    allFriends.insertBefore(node, allFriends.lastElementChild);
+                    btn.textContent = '+';
+                }
+            }
+        });
+    });
 };
 
 (async () => {
@@ -68,7 +83,7 @@ function renderFriends(friends, target) {
             friends = await callAPI('friends.get', { fields: 'city, country, photo_100' });
             localStorage['friends'] = JSON.stringify(friends);
         }
-        renderFriends(friends, allFriends);
+        renderFriends({ items: friends.items.slice(0, 4) }, allFriends);
 
     } catch (e) {
         console.error(e);
@@ -96,15 +111,19 @@ selectedFriendsFilterInput.addEventListener('keyup', onKeyUp((e) => filterFriend
 let currentDrag;
 
 content.addEventListener('dragstart', (e) => {
-    const zone = getCurrentZone(e.target);
+    const zone = e.target.closest('.drag-zone');
 
     if (zone) {
-        currentDrag = { startZone: zone, node: e.target };  
+        const node = e.target.closest('.friend');
+        if (node) {
+            currentDrag = { startZone: zone, node: node };
+            console.log(currentDrag); 
+        }
     }
 });
 
 content.addEventListener('dragover', (e) => {
-    const zone = getCurrentZone(e.target);
+    const zone = e.target.closest('.drag-zone');
 
     if (zone) {
         e.preventDefault();   
@@ -113,15 +132,16 @@ content.addEventListener('dragover', (e) => {
 
 content.addEventListener('drop', (e) => {
     if (currentDrag) {
-        const zone = getCurrentZone(e.target);   
-
         e.preventDefault();
 
+        const zone = e.target.closest('.drag-zone');
+
         if (currentDrag.startZone !== zone) {
-            if (e.target.classList.contains('friend')) {
-                console.log("1");
-                zone.insertBefore(currentDrag.node, e.target.nextElementSibling);
-                console.log("2");
+
+            const node = e.target.closest('.friend');
+
+            if (node) {
+                zone.insertBefore(currentDrag.node, node.nextElementSibling);
             } else {
                 zone.insertBefore(currentDrag.node, zone.lastElementChild);
             }
@@ -130,13 +150,3 @@ content.addEventListener('drop', (e) => {
         currentDrag = null;
     }
 });
-
-function getCurrentZone(target) {
-    let zone = target;
-    do {
-        if (zone.classList.contains('drag-zone'))
-            return zone;
-        zone = zone.parentElement;
-    } while (zone.parentElement);
-    return null;
-};
