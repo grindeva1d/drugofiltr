@@ -1,7 +1,13 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+html {
+    height: 100%;
+}
+
 body {
     font-size: 1em;
+    height: inherit;
+    background-color: #7b8084;
 }
 
 .header {
@@ -18,63 +24,10 @@ body {
     border-radius: 0;
 }
 
-/* 
-
-.search-input {
+.bkg-grey {
     background-color: #F1F1F1;
-    padding: 5px 10px;
 }
 
-.friends {
-    padding: 10px 20px;
-}
-
-.search-input input {
-    border: 1px solid rgb(219, 209, 209);
-    border-radius: 10px;
-    width: 100%;
-    outline: none;
-    background: url(../images/magnifier.png) no-repeat scroll 7px 3px;
-    padding-left:30px;
-    line-height: 21px;
-    box-sizing: border-box;
-}
-
-.drag-zone {
+.bkg-white {
     background-color: #fff;
-    padding: 14px;
-    height: 600px;
-    overflow: auto;
 }
-
-.content div h2 {
-    font-size: 1.6em;
-    font-weight: 400;
-    margin: 0px;
-}
-
-.friend {
-    cursor: move;
-    user-select: none;
-}
-
-.friend img {
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.friend div {
-    font-size: 0.8em;
-    font-weight: bold;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 10px;
-}
-
-.friend button {
-    margin-top: 39px;
-    float: right;
-} */

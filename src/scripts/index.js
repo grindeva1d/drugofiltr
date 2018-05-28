@@ -4,8 +4,9 @@ import 'popper.js';
 import 'bootstrap';
 import '../styles/style.css';
 import friendTemplate from '../templates/friend.hbs';
+import { resizeWindow, isMatching, delay } from './helpers';
 
-const content = document.querySelector('.content');
+const app = document.querySelector('#app');
 const allFriends = document.querySelector('#all-friends');
 const allFriendsFilterInput = document.querySelector('#all-friends-filter');
 const selectedFriends = document.querySelector('#selected-friends');
@@ -16,6 +17,13 @@ let friends;
 VK.init({
     apiId: 6487703
 });
+
+window.addEventListener('DOMContentLoaded', init);
+
+function init() {
+    window.addEventListener('resize', resizeWindow);
+    setTimeout(resizeWindow, 0);
+};
 
 function auth() {
     return new Promise((resolve, reject) => {
@@ -43,13 +51,9 @@ function callAPI(method, settings = {}) {
     });
 };
 
-function isMatching(full, chunk) {
-    return !!~full.toLowerCase().indexOf(chunk.toLowerCase());
-};
-
 function renderFriends(friends, target) {
     const html = friendTemplate(friends);
-    target.innerHTML = html;
+    //target.innerHTML = html;
 
     target.querySelectorAll('.add-button').forEach((btn) => {
         btn.addEventListener('click', (e) => {
@@ -84,39 +88,27 @@ function renderFriends(friends, target) {
     }
 })();
 
-const onKeyUp = (callback) => {
-    let timeout;
-    return (e) => {
-        if (timeout) {
-            window.clearTimeout(timeout);
-        }
-
-        timeout = setTimeout(() => callback(e), 100);
-    };
-};
-
 const filterFriends = (value, target) => {
     renderFriends({ items: friends.items.filter((item) => isMatching(item.first_name, value) || isMatching(item.last_name, value)) }, target);
 };
 
-allFriendsFilterInput.addEventListener('keyup', onKeyUp((e) => filterFriends(e.target.value, allFriends)));
-selectedFriendsFilterInput.addEventListener('keyup', onKeyUp((e) => filterFriends(e.target.value, selectedFriends)));
+allFriendsFilterInput.addEventListener('keyup', delay((e) => filterFriends(e.target.value, allFriends)));
+selectedFriendsFilterInput.addEventListener('keyup', delay((e) => filterFriends(e.target.value, selectedFriends)));
 
 let currentDrag;
 
-content.addEventListener('dragstart', (e) => {
+app.addEventListener('dragstart', (e) => {
     const zone = e.target.closest('.drag-zone');
 
     if (zone) {
         const node = e.target.closest('.friend');
         if (node) {
             currentDrag = { startZone: zone, node: node };
-            console.log(currentDrag); 
         }
     }
 });
 
-content.addEventListener('dragover', (e) => {
+app.addEventListener('dragover', (e) => {
     const zone = e.target.closest('.drag-zone');
 
     if (zone) {
@@ -124,7 +116,7 @@ content.addEventListener('dragover', (e) => {
     }
 });
 
-content.addEventListener('drop', (e) => {
+app.addEventListener('drop', (e) => {
     if (currentDrag) {
         e.preventDefault();
 
