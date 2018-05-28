@@ -1,38 +1,32 @@
-body {
-    padding: 0px;
-    margin: 0px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-#container {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 100px;
+body {
+    font-size: 1em;
 }
 
 .header {
     background-color: #F4846D;
     color: #fff;
-    height: 50px;
     padding: 15px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-weight: bold;
-    font-size: 2em;
-    line-height: 50px;
 }
 
-.content {
-    background-color: #F1F1F1;
-    display: flex;
+.input-group .input-group-prepend .input-group-text {
+    border-radius: 0;
 }
 
-.content > div {
-    flex: 50%;
+.input-group .form-control[type='text'] {
+    border-radius: 0;
 }
+
+/* 
 
 .search-input {
+    background-color: #F1F1F1;
     padding: 5px 10px;
+}
+
+.friends {
+    padding: 10px 20px;
 }
 
 .search-input input {
@@ -83,4 +77,4 @@ body {
 .friend button {
     margin-top: 39px;
     float: right;
-}
+} */

@@ -1,4 +1,7 @@
 import Handlebars from 'handlebars';
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
 import '../styles/style.css';
 import friendTemplate from '../templates/friend.hbs';
 
@@ -135,6 +138,12 @@ content.addEventListener('drop', (e) => {
                 zone.insertBefore(currentDrag.node, node.nextElementSibling);
             } else {
                 zone.insertBefore(currentDrag.node, zone.lastElementChild);
+            }
+
+            const btn = currentDrag.node.querySelector('.add-button');
+
+            if (btn) {
+                btn.textContent = zone.id == 'all-friends' ? '+' : '-';   
             }
         }
 

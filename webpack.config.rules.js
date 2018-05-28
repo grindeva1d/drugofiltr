@@ -9,7 +9,8 @@ module.exports = function() {
         },
         {
             test: /\.hbs/,
-            loader: 'handlebars-loader'
+            loader: 'handlebars-loader',
+            exclude: /(node_modules|bower_components)/
         },
         {
             test: /\.(jpe?g|png|gif|svg|)$/i,
