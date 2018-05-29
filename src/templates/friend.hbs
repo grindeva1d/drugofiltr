@@ -2,6 +2,12 @@
 <div class="friend" draggable="true" data-id="{{id}}">
     <img src="{{photo_100}}" />
     <strong>{{fullName}}</strong>
-    <button class="add-button">+</i></button>   
+    <button class="add-button">
+        {{#if selected}}
+            -
+        {{else}}
+            +
+        {{/if}}
+    </button>   
 </div>
 {{/each}}

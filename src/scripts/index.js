@@ -1,8 +1,15 @@
 import FriendsList from './model/friends';
 import View from './view';
 import Controller from './controller';
+import { load, save } from './helpers';
 import '../styles/style.css';
 
-const friendsList = new FriendsList();
-const view = new View();
-const controller = new Controller(friendsList, view);
+(async () => {
+    const data = await load();
+
+    const friendsList = new FriendsList(data);
+    friendsList.on('change', ([data]) => save(data));
+
+    const view = new View();
+    const controller = new Controller(friendsList, view);
+})();

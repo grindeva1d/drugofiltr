@@ -1,30 +1,16 @@
-import vk from './vk';
+import { load, save } from './helpers';
 
 class Controller {
     constructor(model, view) {
         this.model = model;
         this.view = view;
-        this.api = new vk();
-
-        (async () => {
-            try {
-                let saveData = JSON.parse(localStorage['friends'] || 'null');
-                if (!saveData) {
-                    await this.api.auth();
-                    saveData = await this.api.callAPI('friends.get', { fields: 'city, country, photo_100' });
-                    localStorage['friends'] = JSON.stringify(saveData);
-                }
-                this.model.setFriends(saveData);
-                this.view.renderItems(this.model.all);
-
-            } catch (e) {
-                console.error(e);
-            }
-        })();
 
         this.view.on('select', this.selectFriend.bind(this));
         this.view.on('unselect', this.unselectFriend.bind(this));
         this.view.on('filter', this.filter.bind(this));
+
+        this.view.renderItems(this.model.all, 'all');
+        this.view.renderItems(this.model.selected, 'selected');
     }
 
     selectFriend(id, beforeItem) {

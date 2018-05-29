@@ -1,16 +1,13 @@
 import Friend from './friend';
-import { isMatching } from '../helpers';
+import { isMatching, EventEmitter } from '../helpers';
 
-class FriendsList {
-    constructor() {
+class FriendsList extends EventEmitter {
+    constructor({ all, selected }) {
+        super();
+
         this.count = 0;
-        this.all = [];
-        this.selected = [];
-    }
-
-    setFriends({ count, items }) {
-        this.count = count;
-        this.all = items.slice(0, 5).map(item => new Friend(item));
+        this.all = (all || []).map(item => new Friend(item));
+        this.selected = (selected || []).map(item => new Friend(item));
     }
 
     selectFriend(id) {
@@ -21,6 +18,8 @@ class FriendsList {
             friend.selected = true;
             this.all.splice(index, 1);   
             this.selected.push(friend);
+
+            this.emit('change', { all: this.all, selected: this.selected });
 
             return friend;
         }
@@ -36,6 +35,8 @@ class FriendsList {
             friend.selected = false;
             this.selected.splice(index, 1);   
             this.all.push(friend);
+
+            this.emit('change', { all: this.all, selected: this.selected });
 
             return friend;
         }
