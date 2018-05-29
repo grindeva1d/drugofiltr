@@ -1,45 +1,19 @@
-<div id="app" class="container">
-    <div class="row justify-content-center align-items-center">
-        <div class="col col-md-8">
-            <div class="header rounded-top">
-                <h2>Выберите друзей</h2>
-            </div>
-            <div class="row no-gutters bkg-grey">
-                <div class="col-md-6">
-                    <div class="input-group p-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">&#128269;</span>
-                        </div>
-                        <input id="all-friends-filter" type="text" class="form-control" placeholder="Начните вводить имя друга">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group p-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">&#128269;</span>
-                        </div>
-                        <input id="selected-friends-filter" type="text" class="form-control" placeholder="Начните вводить имя друга">
-                    </div>
-                </div>
-            </div>
-            <div class="row no-gutters bkg-white">
-                <div class="col-md-6 pl-4">
-                    <h2>Ваши друзья</h2>
-                </div>
-                <div class="col-md-6 pl-4">
-                    <h2>Друзья в списке</h2>
-                </div>
-            </div>
-            <div class="rounded-bottom bkg-white">
-                <div class="row no-gutters">
-                    <div class="col-md-6 pl-4">
-                        <div id="all-friends" class="drag-zone"></div>
-                    </div>
-                    <div class="col-md-6 pl-4">
-                        <div id="selected-friends" class="drag-zone"></div>
-                    </div>
-                </div>
-            </div>
+<div class="header">Выберите друзей</div>
+<div class="content">
+    <div>
+        <div class="search-input">
+            <input type="text" data-list="all">
         </div>
+        
+        <h2>Ваши друзья</h2>
+        <div id="all" class="drag-zone"></div>
+    </div>
+    <div>
+        <div class="search-input">
+            <input type="text" data-list="selected">
+        </div>
+
+        <h2>Друзья в списке</h2>
+        <div id="selected" class="drag-zone"></div>
     </div>
 </div>

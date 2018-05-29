@@ -1,13 +1,7 @@
 {{#each items}}
-<div class="friend row no-gutters align-items-center mb-1" draggable="true">
-    <div class="col-6">
-        <img class="rounded-circle" src="{{photo_100}}" />
-    </div>
-    <div class="col-4">
-        <span>{{first_name}} {{last_name}}</span>
-    </div>
-    <div class="col-2">
-        <a class="btn add-button">+</a>
-    </div>
+<div class="friend" draggable="true" data-id="{{id}}">
+    <img src="{{photo_100}}" />
+    <strong>{{fullName}}</strong>
+    <button class="add-button">+</i></button>   
 </div>
 {{/each}}
