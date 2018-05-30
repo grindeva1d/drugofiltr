@@ -1,19 +1,28 @@
-<div class="header">Выберите друзей</div>
-<div class="content">
+<div class="container">
     <div>
-        <div class="search-input">
-            <input type="text" data-list="all">
+        <h1>Выберите друзей</h1>
+        <div>
+            <div class="search-input">
+                <input type="text" data-type="all">
+            </div>
+            <div class="search-input">
+                <input type="text" data-type="selected">
+            </div>
         </div>
-        
-        <h2>Ваши друзья</h2>
-        <div id="all" class="drag-zone"></div>
-    </div>
-    <div>
-        <div class="search-input">
-            <input type="text" data-list="selected">
+        <div>
+            <div>
+                <h2>Ваши друзья</h2>
+            </div>
+            <div>
+                <h2>Друзья в списке</h2>
+            </div>
         </div>
-
-        <h2>Друзья в списке</h2>
-        <div id="selected" class="drag-zone"></div>
+        <div class="friends">
+            <div id="all" class="drag-zone"></div>
+            <div id="selected" class="drag-zone"></div>
+        </div>
+        <div class="bottom">
+            <a id="save">Сохранить</a>
+        </div>
     </div>
 </div>

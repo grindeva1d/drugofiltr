@@ -19,8 +19,6 @@ class FriendsList extends EventEmitter {
             this.all.splice(index, 1);   
             this.selected.push(friend);
 
-            this.emit('change', { all: this.all, selected: this.selected });
-
             return friend;
         }
 
@@ -35,8 +33,6 @@ class FriendsList extends EventEmitter {
             friend.selected = false;
             this.selected.splice(index, 1);   
             this.all.push(friend);
-
-            this.emit('change', { all: this.all, selected: this.selected });
 
             return friend;
         }

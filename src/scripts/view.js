@@ -5,6 +5,7 @@ class View extends EventEmitter {
     constructor() {
         super();
 
+        this.saveBtn = document.getElementById('save');
         this.all = document.getElementById('all');
         this.selected = document.getElementById('selected');
 
@@ -17,7 +18,9 @@ class View extends EventEmitter {
         this.all.addEventListener('drop', this.handleDropOnAll.bind(this));
         this.selected.addEventListener('drop', this.handleDropOnSelected.bind(this));
 
-        document.querySelectorAll('.search-input > input[data-list]').forEach(input => input.addEventListener('keyup', this.handleFilter.bind(this)));
+        document.querySelectorAll('.search-input > input[data-type]').forEach(input => input.addEventListener('keyup', this.handleFilter.bind(this)));
+
+        this.saveBtn.addEventListener('click', this.handleSave.bind(this));
     }
 
     renderItems(items, type = 'all') {
@@ -28,9 +31,9 @@ class View extends EventEmitter {
     selectFriend(friend, beforeItem) {
         if (friend) {
             const friendItem = this.all.querySelector(`[data-id="${friend.id}"]`);
-            const addButton = friendItem.querySelector('button.add-button');
+            const addButton = friendItem.querySelector('a.add-button');
 
-            addButton.textContent = '-';
+            addButton.innerHTML = '<i class="fa fa-minus"></i>';
             this.selected.insertBefore(friendItem, beforeItem);
         }
     }
@@ -38,16 +41,17 @@ class View extends EventEmitter {
     unselectFriend(friend, beforeItem) {
         if (friend) {
             const friendItem = this.selected.querySelector(`[data-id="${friend.id}"]`);
-            const addButton = friendItem.querySelector('button.add-button');
+            const addButton = friendItem.querySelector('a.add-button');
 
-            addButton.textContent = '+';
+            addButton.innerHTML = '<i class="fa fa-plus"></i>';
             this.all.insertBefore(friendItem, beforeItem);
         }
     }
 
     handleSelect({ target }) {
-        if (target.classList.contains('add-button')) {
-            const item = target.parentNode;
+        const button = target.parentNode;
+        if (button.classList.contains('add-button')) {
+            const item = button.parentNode;
             const id = item.dataset.id;
 
             this.emit('select', id);
@@ -55,8 +59,9 @@ class View extends EventEmitter {
     }
 
     handleUnselect({ target }) {
-        if (target.classList.contains('add-button')) {
-            const item = target.parentNode;
+        const button = target.parentNode;
+        if (button.classList.contains('add-button')) {
+            const item = button.parentNode;
             const id = item.dataset.id;
 
             this.emit('unselect', id);
@@ -115,7 +120,15 @@ class View extends EventEmitter {
     handleFilter({ target }) {
         const value = target.value;
         
-        this.emit('filter', value, target.dataset.list);
+        this.emit('filter', value, target.dataset.type);
+    }
+
+    handleSave() {        
+        this.emit('save');
+    }
+
+    save() {
+        alert('Данные успешно сохранены');
     }
 }
 

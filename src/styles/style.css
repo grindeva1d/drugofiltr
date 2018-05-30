@@ -6,37 +6,52 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #757171;
 }
 
-#container {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 100px;
-}
-
-.header {
-    background-color: #F4846D;
-    color: #fff;
-    height: 50px;
+h1, h2 {
+    margin: 0;
     padding: 15px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-weight: bold;
-    font-size: 2em;
-    line-height: 50px;
 }
 
-.content {
-    background-color: #F1F1F1;
+.container {
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > div {
+    height: 70%;
+    flex-basis: 80%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.container > div > div {
     display: flex;
 }
 
-.content > div {
+.container > div > div > div {
     flex: 50%;
+}
+
+.container > div > .friends {
+    height: calc(100% - 237px);
+}
+
+.container > div > h1 {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    background-color: #F4846D;
+    color: #FFFFFF;
+    height: 50px;
 }
 
 .search-input {
     padding: 5px 10px;
+    background-color: #F1F1F1;
 }
 
 .search-input input {
@@ -53,19 +68,32 @@ body {
 .drag-zone {
     background-color: #fff;
     padding: 14px;
-    height: 600px;
     overflow: auto;
 }
 
-.content div h2 {
-    font-size: 1.6em;
-    font-weight: 400;
-    margin: 0px;
+.bottom {
+    padding: 10px;
+    background-color: #F1F1F1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.bottom #save {
+    background-color: #F4846D;
+    padding: 5px 10px;
+    height: 25px;
+    border-radius: 20px;
+    margin-left: auto;
 }
 
 .friend {
     cursor: move;
     user-select: none;
+    margin-top: 5px;
+}
+
+.friend:first-child {
+    margin-top: 0;
 }
 
 .friend img {
@@ -84,7 +112,8 @@ body {
     margin-left: 10px;
 }
 
-.friend button {
+.friend .add-button {
     margin-top: 39px;
     float: right;
+    cursor: pointer;
 }

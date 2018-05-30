@@ -23,8 +23,8 @@ export function load() {
                 const api = new vk();
                 await api.auth();
                 let { items } = await api.callAPI('friends.get', { fields: 'city, country, photo_100' });
+                items = items.map(item => { item.order = item.id; return item; });
                 data = { all: items };
-                save(data);
             }
             return data;
         } catch (e) {

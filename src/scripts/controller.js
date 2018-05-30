@@ -1,4 +1,4 @@
-import { load, save } from './helpers';
+import { save } from './helpers';
 
 class Controller {
     constructor(model, view) {
@@ -8,6 +8,7 @@ class Controller {
         this.view.on('select', this.selectFriend.bind(this));
         this.view.on('unselect', this.unselectFriend.bind(this));
         this.view.on('filter', this.filter.bind(this));
+        this.view.on('save', this.save.bind(this));
 
         this.view.renderItems(this.model.all, 'all');
         this.view.renderItems(this.model.selected, 'selected');
@@ -29,6 +30,13 @@ class Controller {
         const filtered = this.model.filter(value, type);
 
         this.view.renderItems(filtered, type);
+    }
+
+    save() {
+        const data = { all: this.model.all, selected: this.model.selected };
+        save(data);
+
+        this.view.save();
     }
 }
 

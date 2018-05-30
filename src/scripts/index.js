@@ -8,8 +8,6 @@ import '../styles/style.css';
     const data = await load();
 
     const friendsList = new FriendsList(data);
-    friendsList.on('change', ([data]) => save(data));
-
     const view = new View();
     const controller = new Controller(friendsList, view);
 })();
