@@ -1,92 +1,150 @@
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans-Medium.eot');
+    src: url('../fonts/FiraSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FiraSans-Medium.woff2') format('woff2'),
+        url('../fonts/FiraSans-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans-Light.eot');
+    src: url('../fonts/FiraSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FiraSans-Light.woff2') format('woff2'),
+        url('../fonts/FiraSans-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans-Regular.eot');
+    src: url('../fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FiraSans-Regular.woff2') format('woff2'),
+        url('../fonts/FiraSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} 
+ 
 html, body {
     height: 100%;
+    min-width: 960px;
+    min-height: 768px;
 }
 
 body {
-    padding: 0px;
-    margin: 0px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: #757171;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
+    background-color: #f1f1f1;
 }
 
-h1, h2 {
-    margin: 0;
-    padding: 15px;
+.logo {
+    padding-top: 88px;
+}
+
+.logo img {
+    display: block;
+    margin: 0 auto;
 }
 
 .container {
-    height: inherit;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container > div {
-    height: 70%;
-    flex-basis: 80%;
-    background-color: #FFFFFF;
+    width: 620px;
+    height: 490px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 21px;
+    overflow: hidden;
     border-radius: 10px;
 }
 
-.container > div > div {
-    display: flex;
-}
-
-.container > div > div > div {
-    flex: 50%;
-}
-
-.container > div > .friends {
-    height: calc(100% - 237px);
-}
-
-.container > div > h1 {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-
-    background-color: #F4846D;
+.container header .title {
+    background-color:  #ff8663;
     color: #FFFFFF;
-    height: 50px;
-}
-
-.search-input {
-    padding: 5px 10px;
-    background-color: #F1F1F1;
-}
-
-.search-input input {
-    border: 1px solid rgb(219, 209, 209);
-    border-radius: 10px;
-    width: 100%;
-    outline: none;
-    background: url(../images/magnifier.png) no-repeat scroll 7px 3px;
-    padding-left:30px;
-    line-height: 21px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px 15px;
+    height: 45px;
     box-sizing: border-box;
 }
 
+.container header .filters {
+    background-color:  #f0f0f0;
+    color: #9f9f9f;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 10px 15px;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+.container header .filters input {
+    width: 285px;
+    height: 26px;
+
+    border: 1px solid rgb(219, 209, 209);
+    border-radius: 10px;
+    
+    outline: none;
+    background: url(../images/magnifier.png) no-repeat scroll 7px 3px;
+    padding-left: 27px;
+    line-height: 21px;
+    box-sizing: border-box;
+    background-color:  #ffffff;
+}
+
+.container header .filters input:last-child {
+    margin-left: 16px;
+}
+
+.container section.friends {
+    overflow: hidden;
+    height: calc(100% - 135px);
+}
+
+.container section.friends > div {
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    width: 310px;
+    padding: 14px 15px;
+    box-sizing: border-box;
+}
+
+.container section.friends > div > h2 {
+    color: #4f4f4f;
+    font-size: 12px;
+    font-weight: 500;
+}
+
 .drag-zone {
-    background-color: #fff;
-    padding: 14px;
+    height: 100%;
     overflow: auto;
 }
 
-.bottom {
-    padding: 10px;
-    background-color: #F1F1F1;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+.container bottom {
+    display: block;
+    height: 45px;
+    padding: 8px 7px;
+    text-align: right;
 }
 
-.bottom #save {
-    background-color: #F4846D;
-    padding: 5px 10px;
-    height: 25px;
-    border-radius: 20px;
-    margin-left: auto;
+.container bottom a#save {
+    background-color:  #ff8663;
+    width: 87px;
+    height: 30px;
+    border-radius: 10px;
+    padding: 9px 15px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 300;
+    cursor: pointer;
 }
 
 .friend {
+    height: 52px;
+    width: 263px;
     cursor: move;
     user-select: none;
     margin-top: 5px;
@@ -97,23 +155,23 @@ h1, h2 {
 }
 
 .friend img {
-    height: 100px;
-    width: 100px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
-    display: inline-block;
-    vertical-align: middle;
+    float: left;
 }
 
-.friend div {
-    font-size: 0.8em;
-    font-weight: bold;
+.friend strong {
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 6px;
+    margin-top: 15px;
     display: inline-block;
-    vertical-align: middle;
-    margin-left: 10px;
 }
 
 .friend .add-button {
-    margin-top: 39px;
     float: right;
+    margin-top: 15px;
     cursor: pointer;
+    color: #c4c4c4;
 }

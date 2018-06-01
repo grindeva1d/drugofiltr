@@ -3,6 +3,7 @@ import View from './view';
 import Controller from './controller';
 import { load, save } from './helpers';
 import '../styles/style.css';
+import 'normalize.css';
 
 (async () => {
     const data = await load();

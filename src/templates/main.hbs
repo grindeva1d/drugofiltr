@@ -1,28 +1,30 @@
+<div class="logo">
+    <img src="/src/images/label.png" alt="другофильтр">
+</div>
 <div class="container">
-    <div>
-        <h1>Выберите друзей</h1>
-        <div>
-            <div class="search-input">
-                <input type="text" data-type="all">
-            </div>
-            <div class="search-input">
-                <input type="text" data-type="selected">
-            </div>
+
+    <header>
+        <div class="title">
+            Выберите друзей
         </div>
-        <div>
-            <div>
-                <h2>Ваши друзья</h2>
-            </div>
-            <div>
-                <h2>Друзья в списке</h2>
-            </div>
+        <div class="filters">
+            <input type="text" data-type="all">
+            <input type="text" data-type="selected">
         </div>
-        <div class="friends">
+    </header>
+
+    <section class="friends">
+        <div>
+            <h2>Ваши друзья</h2>
             <div id="all" class="drag-zone"></div>
+        </div><div>
+            <h2>Друзья в списке</h2>
             <div id="selected" class="drag-zone"></div>
         </div>
-        <div class="bottom">
-            <a id="save">Сохранить</a>
-        </div>
-    </div>
+    </section>
+
+    <bottom>
+        <a id="save">Сохранить</a>
+    </bottom>
+    
 </div>

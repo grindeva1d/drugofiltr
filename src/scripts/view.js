@@ -18,7 +18,7 @@ class View extends EventEmitter {
         this.all.addEventListener('drop', this.handleDropOnAll.bind(this));
         this.selected.addEventListener('drop', this.handleDropOnSelected.bind(this));
 
-        document.querySelectorAll('.search-input > input[data-type]').forEach(input => input.addEventListener('keyup', this.handleFilter.bind(this)));
+        document.querySelectorAll('input[data-type]').forEach(input => input.addEventListener('keyup', this.handleFilter.bind(this)));
 
         this.saveBtn.addEventListener('click', this.handleSave.bind(this));
     }
